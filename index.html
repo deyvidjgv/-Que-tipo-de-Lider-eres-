@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <title>LIDERAZGO EXTREMO: El Simulador Interactivo</title>
+    <link
+      rel="stylesheet"
+      href="style.css" />
+  </head>
+  <body>
+    <!-- Fondo dinámico con efectos -->
+    <div class="background">
+      <div class="gradient-orb orb-1"></div>
+      <div class="gradient-orb orb-2"></div>
+      <div class="grid-background"></div>
+    </div>
+
+    <div class="main-container">
+      <!-- PANTALLA DE INICIO -->
+      <section
+        id="intro-screen"
+        class="screen screen-active">
+        <div class="intro-card glass-effect">
+          <div class="intro-header">
+            <h1 class="game-title">LIDERAZGO EXTREMO</h1>
+            <p class="game-subtitle">EL SIMULADOR</p>
+            <div class="title-divider"></div>
+          </div>
+
+          <div class="intro-story">
+            <p class="story-text">
+              Eres CEO de una startup tecnológica en auge. Tu equipo depende de
+              ti. Cada decisión que tomes en los próximos momentos definirá el
+              futuro de la empresa.
+            </p>
+
+            <p class="story-subtext">
+              Enfrenta 7 intensas crisis y descubre cuál de los 8 perfiles de
+              liderazgo posees.
+            </p>
+          </div>
+
+          <div class="intro-stats">
+            <div class="stat-box">
+              <div class="stat-number"><i data-lucide="flame"></i></div>
+              <div class="stat-label">7 Crisis</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-number"><i data-lucide="shield-alert"></i></div>
+              <div class="stat-label">6 Habilidades</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-number"><i data-lucide="zap"></i></div>
+              <div class="stat-label">8 Perfiles</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-number"><i data-lucide="star"></i></div>
+              <div class="stat-label">Épico</div>
+            </div>
+          </div>
+
+          <div class="achievements-preview">
+            <p class="preview-title">
+              <i data-lucide="clapperboard"></i>
+              SIMULADOR DE CRISIS EXTREMA
+            </p>
+            <p class="preview-text">
+              Enfrenta 7 crisis de supervivencia corporativa. Cada decisión
+              moldea tu perfil de liderazgo único.
+            </p>
+          </div>
+
+          <button
+            class="btn-primary glow-effect"
+            onclick="startExperience()">
+            <span><i data-lucide="zap"></i></span>
+            INICIAR CRISIS
+          </button>
+
+          <p class="disclaimer">
+            <i data-lucide="alert-triangle"></i>
+            Advertencia: Tensión extrema. Tu verdadero liderazgo será revelado
+            en los próximos 3 minutos.
+          </p>
+        </div>
+      </section>
+
+      <!-- PANTALLA DE ESCENARIOS -->
+      <section
+        id="quiz-screen"
+        class="screen">
+        <!-- TERMÓMETRO DE TENSIÓN -->
+        <div class="stress-meter">
+          <div class="stress-scale">
+            <div
+              class="stress-needle"
+              id="stress-needle"></div>
+          </div>
+          <p class="stress-label">TENSIÓN</p>
+        </div>
+
+        <div class="quiz-wrapper glass-effect">
+          <!-- Barra de progreso y estadísticas en vivo -->
+          <div class="hud-container">
+            <div class="hud-left">
+              <div class="hud-item">
+                <span class="hud-label">
+                  <i
+                    data-lucide="target"
+                    style="
+                      width: 14px;
+                      height: 14px;
+                      display: inline-block;
+                      vertical-align: middle;
+                      margin-right: 4px;
+                    "></i>
+                  DECISIONES
+                </span>
+                <span
+                  class="hud-value"
+                  id="points-display">
+                  0
+                </span>
+              </div>
+              <div class="hud-item">
+                <span class="hud-label">
+                  <i
+                    data-lucide="dumbbell"
+                    style="
+                      width: 14px;
+                      height: 14px;
+                      display: inline-block;
+                      vertical-align: middle;
+                      margin-right: 4px;
+                    "></i>
+                  SKILL TOP
+                </span>
+                <span
+                  class="hud-value"
+                  id="combo-display">
+                  ---
+                </span>
+              </div>
+            </div>
+            <div class="progress-container">
+              <div class="progress-bar-bg">
+                <div
+                  class="progress-bar-fill"
+                  id="progress-bar-fill"></div>
+              </div>
+              <div class="progress-info">
+                <span class="progress-label">
+                  <i
+                    data-lucide="flame"
+                    style="
+                      width: 14px;
+                      height: 14px;
+                      display: inline-block;
+                      vertical-align: middle;
+                      margin-right: 4px;
+                    "></i>
+                  CRISIS
+                </span>
+                <span class="progress-number">
+                  <span id="current-step">1</span>
+                  /
+                  <span id="total-steps">7</span>
+                </span>
+              </div>
+            </div>
+            <div class="hud-right">
+              <div class="hud-item">
+                <span class="hud-label">
+                  <i
+                    data-lucide="bar-chart-2"
+                    style="
+                      width: 14px;
+                      height: 14px;
+                      display: inline-block;
+                      vertical-align: middle;
+                      margin-right: 4px;
+                    "></i>
+                  MÁXIMO
+                </span>
+                <span
+                  class="hud-value"
+                  id="accuracy-display">
+                  ---
+                </span>
+              </div>
+              <div class="hud-item">
+                <span class="hud-label">
+                  <i
+                    data-lucide="thermometer"
+                    style="
+                      width: 14px;
+                      height: 14px;
+                      display: inline-block;
+                      vertical-align: middle;
+                      margin-right: 4px;
+                    "></i>
+                  NIVEL
+                </span>
+                <span
+                  class="hud-value"
+                  id="level-display">
+                  0
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contenido del escenario -->
+          <div class="scenario-wrapper">
+            <div class="scenario-header">
+              <h2
+                class="scenario-number"
+                id="scenario-number">
+                ESCENARIO 1
+              </h2>
+            </div>
+            <h3
+              class="scenario-title"
+              id="scenario-title"></h3>
+            <p
+              class="scenario-description"
+              id="scenario-description"></p>
+
+            <div class="leadership-traits-guide">
+              <p class="traits-hint">
+                <i
+                  data-lucide="arrow-down"
+                  style="
+                    width: 16px;
+                    height: 16px;
+                    display: inline-block;
+                    vertical-align: middle;
+                  "></i>
+                Elige tu respuesta. Cada decisión impacta 6 habilidades
+                distintas:
+              </p>
+            </div>
+
+            <div
+              class="options-container"
+              id="options-container"></div>
+
+            <!-- Feedback de puntos flotante -->
+            <div
+              class="floating-points"
+              id="floating-points"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PANTALLA DE RESULTADOS -->
+      <section
+        id="results-screen"
+        class="screen">
+        <div class="results-wrapper glass-effect">
+          <div class="results-header">
+            <h2 class="results-title">
+              <i data-lucide="star"></i>
+              TU PERFIL DE LIDERAZGO
+              <i data-lucide="star"></i>
+            </h2>
+            <p class="results-subtitle">El análisis de crisis ha revelado:</p>
+            <div class="final-score-display">
+              <div
+                class="epic-title"
+                id="final-score">
+                COMANDANTE DE ACERO
+              </div>
+            </div>
+          </div>
+
+          <!-- GRÁFICO RADAR -->
+          <div
+            class="radar-container"
+            style="
+              position: relative;
+              width: 100%;
+              aspect-ratio: 1;
+              max-height: 400px;
+              max-width: 400px;
+              margin: 0 auto;
+            ">
+            <canvas id="radarCanvas"></canvas>
+          </div>
+          <p
+            class="radar-label"
+            style="text-align: center">
+            Tu Distribución de Habilidades
+          </p>
+
+          <div class="profile-card">
+            <h3
+              class="profile-name"
+              id="profile-name">
+              Tu Perfil de Liderazgo
+            </h3>
+
+            <div class="profile-description">
+              <p id="profile-desc"></p>
+            </div>
+
+            <div class="traits-section">
+              <h4 class="section-title">
+                <i
+                  data-lucide="sparkles"
+                  style="
+                    width: 20px;
+                    height: 20px;
+                    display: inline-block;
+                    vertical-align: middle;
+                    margin-right: 8px;
+                  "></i>
+                TUS FORTALEZAS
+              </h4>
+              <ul
+                class="traits-list"
+                id="traits-list"></ul>
+            </div>
+
+            <div class="scores-section">
+              <h4 class="section-title">
+                <i
+                  data-lucide="bar-chart"
+                  style="
+                    width: 20px;
+                    height: 20px;
+                    display: inline-block;
+                    vertical-align: middle;
+                    margin-right: 8px;
+                  "></i>
+                HABILIDADES DESARROLLADAS
+              </h4>
+              <div
+                class="scores-container"
+                id="scores-container"></div>
+            </div>
+          </div>
+
+          <button
+            class="btn-primary glow-effect"
+            onclick="restartExperience()">
+            <i data-lucide="rotate-ccw"></i>
+            REINTENTAR ANÁLISIS
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <!-- Librerías Externas -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Logica Principal -->
+    <script src="script.js"></script>
+    <script>
+      lucide.createIcons();
+    </script>
+  </body>
+</html>
